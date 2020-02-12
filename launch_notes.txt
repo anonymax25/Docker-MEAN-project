@@ -1,0 +1,5 @@
+> cd client
+> docker build -t angular_client:1.0 .
+> docker run -p 4200:4200 angular_client:1.0
+
+#access to angular app in 192.168.99.100:4200 (only for windows??) networks?  https://stackoverflow.com/questions/27937185/assign-static-ip-to-docker-container

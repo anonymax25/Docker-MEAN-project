@@ -4,11 +4,12 @@ version: '3' # specify docker-compose version
 services:
 
  angular:
+
    build:
      context: ./angularClient
      dockerfile: DOCKERFILE
    ports:
-     - "80:4200"
+     - "4200:4200"
 
  node: # name of the first service
    build:  # specify the directory of the Dockerfile
@@ -17,13 +18,10 @@ services:
    ports:
      - "8080:8080"
    environment:
-     - MONGO_URL=mongodb://database/mean-app
-   links:
-     - mongodb
-   depends_on:
-     - mongodb
+     - MONGO_URL=mongodb://database/app
 
  mongodb: # name of the third service
+   network_mode: host
    image: mongo # specify image to build container from
    volumes:
      - "/data/db:/data/db"

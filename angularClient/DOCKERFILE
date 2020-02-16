@@ -9,7 +9,7 @@ COPY package*.json ./
 # Install any needed packages
 RUN npm install
 
-RUN npm install -g @angular/cli #added
+#RUN npm install -g @angular/cli #added
 
 # Bundle app source
 COPY . ./

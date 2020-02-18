@@ -3,22 +3,23 @@
 > docker build -t angular_client:1.0 .
 > docker run -p 4200:4200 angular_client:1.0
 
-#access to angular app in 192.168.99.100:4200 (only for windows??) networks?  https://stackoverflow.com/questions/27937185/assign-static-ip-to-docker-container
 
 #----------node.js express server--------#
 
->docker build -t api:1.0 .
->docker run -p 8080:8080 api:1.0
+>docker build -t api:1.0 . 
+>docker run -p 8080:8080 api:1.0 
 
 #----------mongoDB--------#
+>docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:4.0.4
 
 
-# Kill containers:
+
+# Kill all running containers:
 > docker kill $(docker ps -q)
 > docker rm $(docker ps -a -q)
 
 
-docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:4.0.4
+#------go in the monogdb Container when running
 docker exec -it mongodb bash
 mongo
 use mongoDB

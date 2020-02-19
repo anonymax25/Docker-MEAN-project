@@ -21,7 +21,7 @@ export class ApiCallService {
   constructor(private http: HttpClient) { }
 
   getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(environment.apiUrl + '/tasks', optionRequete).pipe(
+    return this.http.get<Task[]>(environment.apiUrl + '/task', optionRequete).pipe(
       catchError(this.handleError<Task[]>('getTasks', [])));
   }
 

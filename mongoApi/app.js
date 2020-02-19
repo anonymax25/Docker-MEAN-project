@@ -46,13 +46,13 @@ app.post("/task", async (request, response) => {
       console.log("POST task to DB:");
       console.log(request.body);
       var result = await task.save();
-      response.send();
+      response.send(result);
   } catch (error) {
       response.status(500).send(error);
   }
 });
 
-app.get("/tasks", async (request, response) => {
+app.get("/task", async (request, response) => {
     try {
 
         var result = await TaskModel.find().exec();
@@ -64,12 +64,25 @@ app.get("/tasks", async (request, response) => {
     }
 });
 
+app.delete("/task", async (request, response) => {
+    try {
+      if (request.body._id.length < 5) {
+          return;
+      }
+        var result = await TaskModel.find({_id:request.body._id}).deleteOne().exec();
+        console.log("DELETE " + request.body._id + " from DB:");
+        console.log(result);
+        response.send(result);
+    } catch (error) {
+        response.status(500).send(error);
+    }
+});
 
 
 app.get("/", async (request, response) => {
   response.send("node js mongo db API 2");
 });
 
-app.listen(8080, () => {
-    console.log("Listening at :8080...");
+app.listen(8181, () => {
+    console.log("Listening at :8181...");
 });

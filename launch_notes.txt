@@ -7,7 +7,7 @@
 #----------node.js express server--------#
 
 >docker build -t api:1.0 . 
->docker run -p 8080:8080 api:1.0 
+>docker run -p 8181:8181 api:1.0 
 
 #----------mongoDB--------#
 >docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:4.0.4
@@ -23,3 +23,15 @@
 docker exec -it mongodb bash
 mongo
 use mongoDB
+
+
+#------tools
+mongo compass to monitor mongo DB
+postman to test the express API
+
+
+
+JSON format to call api
+delete: {"_id": "5e4dba416cfc7015ecff42df"}
+get: {}
+post: {"name": "apple", "days": 4}

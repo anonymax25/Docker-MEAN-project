@@ -42,6 +42,22 @@ app.get("/tasks", async (request, response) => {
     }
 });
 
+<<<<<<< Updated upstream
+=======
+app.post("/deletetask", async (request, response) => {
+    try {
+      if (request.body._id.length < 5) {
+          return;
+      }
+        var result = await TaskModel.find({_id:request.body._id}).deleteOne().exec();
+        console.log("DELETE " + request.body._id + " from DB:");
+        console.log(result);
+        response.send(result);
+    } catch (error) {
+        response.status(500).send(error);
+    }
+});
+>>>>>>> Stashed changes
 
 
 app.get("/", async (request, response) => {

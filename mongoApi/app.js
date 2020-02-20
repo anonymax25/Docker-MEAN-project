@@ -64,7 +64,7 @@ app.get("/task", async (request, response) => {
     }
 });
 
-app.delete("/task", async (request, response) => {
+app.post("/deletetask", async (request, response) => {
     try {
       if (request.body._id.length < 5) {
           return;
@@ -77,6 +77,7 @@ app.delete("/task", async (request, response) => {
         response.status(500).send(error);
     }
 });
+
 
 
 app.get("/", async (request, response) => {

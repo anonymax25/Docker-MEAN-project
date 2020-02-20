@@ -23,7 +23,11 @@ export class AppComponent {
         this.tasks = data;
       });
   }
-
-
+  deleteTask(task: Task) {
+    this.api.deleteTask(task)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
 
 }

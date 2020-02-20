@@ -1,5 +1,5 @@
 <div class="">Hello to the task app</div>
 <br>
 <div *ngFor="let task of tasks">
-  <div>Tache: {{task.name}}, {{task.days}} jours</div>
+  <div>Tache: {{task.name}}, {{task.days}} jours, id: {{task._id}} <button (click)="deleteTask(task)">Delete</button></div>
 </div>

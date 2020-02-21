@@ -1,5 +1,29 @@
-<div class="">Hello to the task app</div>
-<br>
-<div *ngFor="let task of tasks">
-  <div>Tache: {{task.name}}, {{task.days}} jours, id: {{task._id}} <button (click)="deleteTask(task)">Delete</button></div>
+<div class="container">
+  <div class="jumbotron text-center">
+    <h1>Il est temps de s'y mettre!<span class="label label-info">{{ tasks.length }}</span></h1>
+  </div>
+
+  <div id="todo-list" class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+
+      <div class="checkbox" *ngFor="let task of tasks">
+        <label>
+          <input type="checkbox" ng-click="deleteTask(task)"> {{ task.name }} [ {{task.days}} restant ]
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="todo-form" class="row">
+    <div class="col-sm-8 col-sm-offset-2 text-center">
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control input-lg text-center" placeholder="Ajouter une tâche" ng-model="formData.text">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="FONCTION PUSH TASK">Ajouter</button>
+      </form>
+    </div>
+  </div>
+
 </div>

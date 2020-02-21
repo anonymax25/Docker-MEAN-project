@@ -6,7 +6,7 @@ var cors = require('cors');
 var app = Express();
 
 
-Mongoose.connect("mongodb://192.168.99.100:27017/dockerDB");
+Mongoose.connect("mongodb://localhost:27017/dockerDB");
 
 app.use(cors());
 app.use(BodyParser.json());

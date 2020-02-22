@@ -8,7 +8,7 @@
 
       <div class="checkbox" *ngFor="let task of tasks">
         <label>
-          <input type="checkbox" ng-click="deleteTask(task)"> {{ task.name }} [ {{task.days}} restant ]
+          <div> {{ task.name }}  {{task.days}} <button (click)="deleteTask(task)">Delete</button></div>
         </label>
       </div>
 

@@ -24,9 +24,10 @@ export class AppComponent {
       });
   }
   deleteTask(task: Task) {
-    this.api.deleteTask(task)
+    this.api.deleteTask(task._id)
       .subscribe(data => {
-        console.log(data);
+        console.log(data)
+        this.getTasks();
       });
   }
 

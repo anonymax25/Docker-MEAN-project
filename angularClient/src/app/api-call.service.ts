@@ -25,10 +25,11 @@ export class ApiCallService {
       catchError(this.handleError<Task[]>('getTasks', [])));
   }
 
-  deleteTask(task: Task): Observable<any> {
-    return this.http.post<any>(environment.apiUrl + '/deletetask', task, optionRequete).pipe(
+  deleteTask(id: number): Observable<any> {
+    return this.http.delete<any>(environment.apiUrl + '/task/' + id, optionRequete).pipe(
       catchError(this.handleError<any>('deleteTask', [])));
   }
+
   sendTask(task: Task): Observable<any> {
     return this.http.post<any>(environment.apiUrl + '/task', task, optionRequete).pipe(
       catchError(this.handleError<any>('deleteTask', [])));

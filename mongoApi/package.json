@@ -1,7 +1,7 @@
 {
   "name": "mongoApi",
   "version": "1.0.0",
-  "description": "",
+  "description": "node.js express api, connected to mongodb",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

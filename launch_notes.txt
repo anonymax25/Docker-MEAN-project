@@ -31,7 +31,11 @@ postman to test the express API
 
 
 
-JSON format to call api
+#--------JSON format to call api--------#
 delete: {"_id": "5e4dba416cfc7015ecff42df"}
 get: {}
 post: {"name": "apple", "days": 4}
+
+#------Docker compose-------#
+>docker-compose build
+>docker-compose up

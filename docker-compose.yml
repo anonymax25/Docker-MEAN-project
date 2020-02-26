@@ -1,29 +1,16 @@
-version: '3' # specify docker-compose version
-
-# Define the services/containers to be run
+version: '3'
 services:
+  angular_client:
+    build: ./angularClient
+    ports:
+      - "4200:4200"
 
- angular:
+  api:
+    build: ./mongoApi
+    ports:
+      - "8181:8181"
 
-   build:
-     context: ./angularClient
-     dockerfile: DOCKERFILE
-   ports:
-     - "4200:4200"
-
- node: # name of the first service
-   build:  # specify the directory of the Dockerfile
-      context: ./nodeServer
-      dockerfile: DOCKERFILE
-   ports:
-     - "8080:8080"
-   environment:
-     - MONGO_URL=mongodb://database/app
-
- mongodb: # name of the third service
-   network_mode: host
-   image: mongo # specify image to build container from
-   volumes:
-     - "/data/db:/data/db"
-   ports:
-     - "27017:27017" # specify port forewarding
+  mongodb:
+    ports:
+      - '27017-27019:27017-27019'
+    image: 'mongo:4.0.4'

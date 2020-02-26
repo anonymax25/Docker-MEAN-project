@@ -6,7 +6,7 @@ var cors = require('cors');
 var app = Express();
 
 
-Mongoose.connect("mongodb://localhost:27017/dockerDB");
+Mongoose.connect("mongodb://192.168.99.100:27017/dockerDB");
 
 app.use(cors());
 app.use(BodyParser.json());
@@ -64,13 +64,13 @@ app.get("/task", async (request, response) => {
     }
 });
 
-app.post("/deletetask", async (request, response) => {
+app.delete("/task/:id", async (request, response) => {
     try {
-      if (request.body._id.length < 5) {
+      if (request.params.id.length < 5) {
           return;
       }
-        var result = await TaskModel.find({_id:request.body._id}).deleteOne().exec();
-        console.log("DELETE " + request.body._id + " from DB:");
+        var result = await TaskModel.deleteOne({_id:request.params.id}).exec();
+        console.log("DELETE " + request.params.id + " from DB:");
         console.log(result);
         response.send(result);
     } catch (error) {

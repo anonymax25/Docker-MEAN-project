@@ -1,6 +1,8 @@
 <div class="container">
   <div class="jumbotron m-3 p-3 text-center bg-dark">
-    <h1 class="text-light">Il est temps de s'y mettre!<br><br><span class="label label-info text-danger">{{ tasks.length }} taches</span></h1>
+    <h1 *ngIf="tasks.length > 1" class="text-light">It's time to work!<br><br><span class="label label-info text-danger">You have {{ tasks.length }} tasks</span></h1>
+    <h1 *ngIf="tasks.length == 1" class="text-light"><span class="label label-info">You have <div class="text-danger">{{ tasks.length }}</div> task</span></h1>
+    <h1 *ngIf="tasks.length <= 0" class="text-light">You don't have any tasks</h1>
   </div>
 
   <div class="text-center bg-secondary mb-3">
@@ -18,7 +20,7 @@
 
       <div class="row" *ngFor="let task of tasks">
         <label class=" p-3 bg-dark text-light rounded-pill ">
-          <div> {{ task.name }} , {{task.days}} days <button (click)="deleteTask(task)" class="btn-sm btn-success">Finish</button></div>
+          <div> {{ task.name }} , {{task.days}} days <button (click)="deleteTask(task)" class="btn btn-success rounded-pill">Finish</button></div>
         </label>
       </div>
 

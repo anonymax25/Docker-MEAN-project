@@ -32,7 +32,7 @@ export class ApiCallService {
 
   sendTask(task: Task): Observable<any> {
     return this.http.post<any>(environment.apiUrl + '/task', task, optionRequete).pipe(
-      catchError(this.handleError<any>('deleteTask', [])));
+      catchError(this.handleError<any>('sendTask', [])));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -25,7 +25,7 @@ mongo
 use mongoDB
 
 
-#------tools
+#------tools------#
 mongo compass to monitor mongo DB
 postman to test the express API
 
@@ -39,3 +39,7 @@ post: {"name": "apple", "days": 4}
 #------Docker compose-------#
 >docker-compose build
 >docker-compose up
+
+
+
+devdependencies nodemon

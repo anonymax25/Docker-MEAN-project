@@ -14,3 +14,8 @@ services:
     ports:
       - '27017-27019:27017-27019'
     image: 'mongo:4.0.4'
+    volumes:
+      - mongo-volume:/data/db
+
+volumes:
+  mongo-volume:

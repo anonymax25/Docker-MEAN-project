@@ -46,7 +46,7 @@ async function startServer() {
             // Pass to next layer of middleware
             next();
         });
-        routes(app);
+        await routes(app);
 
 
     } catch (e) {

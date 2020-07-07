@@ -36,7 +36,7 @@ module.exports = function (app) {
             var result = await TaskModel.deleteOne({_id: request.params.id}).exec();
             console.log("DELETE " + request.params.id + " from DB:");
             console.log(result);
-            response.send(result);
+            response.status(200).send(result);
         } catch (error) {
             response.status(500).send(error);
         }

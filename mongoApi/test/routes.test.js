@@ -63,6 +63,9 @@ describe('routes testing', () => {
                 });
         });
     });
+    /**
+     * Delete requests
+     */
     describe('Delete tasks request',()=> {
        it('should delete a task',(done)=> {
            chai.request(server)

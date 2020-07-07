@@ -2,10 +2,10 @@ require('dotenv').config();
 const Express = require("express");
 const Mongoose = require("mongoose");
 const BodyParser = require("body-parser");
-var cors = require('cors');
+const cors = require('cors');
+const routes = require('./routes');
 
-
-var app = Express();
+const app = Express();
 
 async function startServer() {
     try {
@@ -21,10 +21,12 @@ async function startServer() {
                 console.log('Connected to DB');
             }
         });
-
+        app.listen(8181, () => {
+            console.log("Listening at :8181...");
+        });
         app.use(cors());
         app.use(BodyParser.json());
-        app.use(BodyParser.urlencoded({ extended: false }));
+        app.use(BodyParser.urlencoded({extended: false}));
         app.use(function (req, res, next) {
 
             res.setHeader('x-Trigger', 'CORS');
@@ -44,64 +46,10 @@ async function startServer() {
             // Pass to next layer of middleware
             next();
         });
-
-        const TaskModel = Mongoose.model("task", {
-            name: String,
-            days: Number
-        });
+        routes(app);
 
 
-        app.post("/task", async (request, response) => {
-            try {
-                if (request.body.length < 3) {
-                    return;
-                }
-                var task = new TaskModel(request.body);
-                console.log("POST task to DB:");
-                console.log(request.body);
-                var result = await task.save();
-                response.send(result);
-            } catch (error) {
-                response.status(500).send(error);
-            }
-        });
-
-        app.get("/task", async (request, response) => {
-            try {
-
-                var result = await TaskModel.find().exec();
-                console.log("GET all from DB:");
-                console.log(result);
-                response.send(result);
-            } catch (error) {
-                response.status(500).send(error);
-            }
-        });
-
-        app.delete("/task/:id", async (request, response) => {
-            try {
-                if (request.params.id.length < 5) {
-                    return;
-                }
-                var result = await TaskModel.deleteOne({_id:request.params.id}).exec();
-                console.log("DELETE " + request.params.id + " from DB:");
-                console.log(result);
-                response.send(result);
-            } catch (error) {
-                response.status(500).send(error);
-            }
-        });
-
-
-
-        app.get("/", async (request, response) => {
-            response.send("node js mongo db API 2");
-        });
-
-        app.listen(8181, () => {
-            console.log("Listening at :8181...");
-        });
-    }catch (e) {
+    } catch (e) {
         console.error(`Error in server : ${e.toString()}`);
         console.log(e)
     }

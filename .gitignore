@@ -1,2 +1,11 @@
 /mongoApi/node_modules/
 /angularClient/node_modules/
+.env
+./database
+.idea/.gitignore
+.idea/Docker-MEAN-project.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+database/

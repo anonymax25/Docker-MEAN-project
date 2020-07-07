@@ -1,13 +1,15 @@
+require('dotenv').config();
 const Express = require("express");
 const Mongoose = require("mongoose");
 const BodyParser = require("body-parser");
 var cors = require('cors');
 
+
 var app = Express();
 
 async function startServer() {
     try {
-        await Mongoose.connect("mongodb://root:root@localhost:27017/dockerDB", {
+        await Mongoose.connect(process.env.MONGODB_URI, {
             useNewUrlParser: true,
             useCreateIndex: true,
             useUnifiedTopology: true,

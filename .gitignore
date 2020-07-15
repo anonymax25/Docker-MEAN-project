@@ -1,6 +1,6 @@
 /mongoApi/node_modules/
 /angularClient/node_modules/
-./.env
+mongoApi/.env
 ./database
 .idea/.gitignore
 .idea/Docker-MEAN-project.iml

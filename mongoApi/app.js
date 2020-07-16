@@ -57,10 +57,8 @@ async function startServer() {
                     return;
                 }
                 var task = new TaskModel(request.body);
-                console.log("POST task to DB:");
-                console.log(request.body);
                 var result = await task.save();
-                response.send(result);
+                response.status(204).send(result);
             } catch (error) {
                 response.status(500).send(error);
             }

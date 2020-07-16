@@ -1,0 +1,18 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <h2>Sign up !</h2>
+
+    <!-- Login Form -->
+    <form>
+      <input type="text" class="fadeIn second" id="name" required [(ngModel)]="login" name="name" placeholder="login">
+      <input type="text" class="fadeIn third" id="password" required [(ngModel)]="password" name="name" placeholder="password">
+      <button (click)="signupSubmit()" class="fadeIn fourth btn btn-primary my-2">Sign Up</button>
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <p>Sign up to our fantastic todolist app to track all your tasks</p>
+    </div>
+
+  </div>
+</div>

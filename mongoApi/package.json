@@ -23,6 +23,7 @@
     "sinon": "^9.0.2"
   },
   "devDependencies": {
+    "cypress": "^4.9.0",
     "nodemon": "^2.0.2"
   }
 }

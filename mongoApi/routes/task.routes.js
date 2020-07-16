@@ -16,14 +16,18 @@ module.exports = function (app) {
         }
     });
 
-    app.get("/task", async (request, response) => {
-        try {
+    app.get("/task/:uid", async (request, response) => {
 
-            var result = await TaskModel.find().exec();
-            console.log("GET all from DB:");
-            console.log(result);
-            response.send(result);
+        try {
+            if(request.params.uid){
+                var result = await TaskModel.find({user: request.params.uid});
+                response.send(result);
+            } else {
+                response.status(400).end();
+            }
+
         } catch (error) {
+            console.log(error)
             response.status(500).send(error);
         }
     });

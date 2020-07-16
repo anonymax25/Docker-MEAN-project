@@ -16,7 +16,7 @@ let user = {
 describe('routes testing', () => {
 
     describe('Auth routes', () => {
-        it('404 buffer ', (done) => {
+        it('404 wait ', (done) => {
             chai.request(server)
                 .post('/signup')
                 .send()
@@ -44,10 +44,6 @@ describe('routes testing', () => {
         it('should login user', (done) => {
             chai.request(server)
                 .get('/login/'+ user.login + '/' + user.password)
-                .send({
-                    login: user.login,
-                    password: user.password
-                })
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
@@ -96,7 +92,6 @@ describe('routes testing', () => {
             chai.request(server)
                 .get('/')
                 .end((err, res) => {
-                    console.log(res);
                     res.should.have.status(200);
                     res.body.should.be.a('object');
                     done();
@@ -126,6 +121,21 @@ describe('routes testing', () => {
                    done();
                });
        });
+    });
+
+    /**
+     * @description Delete user and his tasks
+     */
+    describe('End tests',()=> {
+        it('should delete user and its tasks', (done) => {
+            chai.request(server)
+                .delete('/user/' + user.login + '/' + user.password)
+                .end((err, res) => {
+                    res.should.have.status(204);
+                    res.body.should.be.a('object');
+                    done();
+                });
+        });
     });
 });
 

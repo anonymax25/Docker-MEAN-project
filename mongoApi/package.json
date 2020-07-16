@@ -4,7 +4,7 @@
   "description": "node.js express api, connected to mongodb",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha ./test/routes.test.js",
     "start": "nodemon app.js"
   },
   "keywords": [],

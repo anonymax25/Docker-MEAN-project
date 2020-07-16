@@ -7,13 +7,23 @@
 
   <div class="text-center bg-secondary mb-3">
     <h1>Add a task to your list</h1>
-        <form  [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm.value)" class="bg-secondary row">
-
-          <input class="ml-2 form-control col-5" id="name" type="text" formControlName="name" placeholder="task name">
-          <input class="ml-2 form-control col-5" id="days" type="number" formControlName="days" placeholder="task duration(days)">
-          <button class="ml-2 btn btn-dark" type="submit">Add task</button>
-
-        </form>
+      <form  [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm.value)" (reset)="resetForm()">
+        <div class="form-row">
+          <div class="form-group col">
+            <input class="form-control" id="name" type="text" formControlName="name" placeholder="task name">
+            <small class="error" *ngIf="nameCtrl.touched && nameCtrl.hasError('required')">
+              Name is required !
+            </small>
+          </div>
+          <div class="form-group col">
+            <input class="form-control" id="days" type="number" formControlName="days" placeholder="task duration(days)">
+            <small class="error" *ngIf="daysCtrl.touched && daysCtrl.hasError('required')">
+              Duration is required !
+            </small>
+          </div>
+        </div>
+        <button class="btn btn-dark" type="submit" [disabled]="taskForm.invalid">Add task</button>
+      </form>
   </div>
 
   <div class="d-flex flex-column align-center col-12">

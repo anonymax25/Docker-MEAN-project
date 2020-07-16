@@ -5,7 +5,6 @@ const SecurityUtil = require('../utils').SecuritryUtils;
 
 module.exports = function (app) {
     app.post("/signup", bodyParser.json(), async (req, res) => {
-        console.log(req.body)
         if (req.body.login && req.body.password) {
             try {
                 const user = new User({
@@ -33,7 +32,7 @@ module.exports = function (app) {
                 if (user){
                     res.status(200).json(user);
                 } else {
-                    res.status(404).end();
+                    res.status(409).end();
                 }
             } catch (e) {
                 res.status(500).end();

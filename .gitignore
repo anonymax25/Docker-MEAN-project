@@ -9,3 +9,5 @@ mongoApi/.env
 .idea/modules.xml
 .idea/vcs.xml
 database/
+.env
+mongoApi/.env

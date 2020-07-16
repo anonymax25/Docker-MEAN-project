@@ -7,13 +7,15 @@ let faker = require('faker');
 chai.use(chaiHttp);
 let sampleTask = [];
 
-let user = {
-    _id: '',
-    login: 'testing',
-    password: 'testing'
-}
+
 
 describe('routes testing', () => {
+
+    let user = {
+        _id: '',
+        login: 'testing',
+        password: 'testing'
+    }
 
     describe('Auth routes', () => {
         it('404 wait ', (done) => {
@@ -60,8 +62,8 @@ describe('routes testing', () => {
             chai.request(server)
                 .post('/task')
                 .send({
-                    name: faker.name.jobTitle(),
-                    days: faker.random.number(1, 27),
+                    name: 'Tasking',
+                    days: 3,
                     user: user._id
                 })
                 .end((err, res) => {

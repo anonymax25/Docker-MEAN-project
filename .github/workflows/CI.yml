@@ -6,8 +6,6 @@ name: CI
 on:
   push:
    branches: [ develop, master ]
-  pull_request:
-    branches: [ develop, master ]
 
 jobs:
   build:
@@ -36,3 +34,27 @@ jobs:
       run: |
         npm install
         npm test
+        npm start
+      
+    - name: Wait a bit for server spool-up
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '5s' 
+        
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+        working-directory: angularClient
+        start: npm start
+        # quote the url to be safe against YML parsing surprises
+        wait-on: 'http://localhost:4200'
+        
+    #- name: Run Cypress Front
+     # working-directory: angularClient
+     # run: |
+     #   echo 'npm install'
+     #   npm install
+     #   echo 'npm install finished'
+     #   echo 'npm cypress-silent'
+     #   npm cypress-silent
+     #   echo 'npm cypress-silent finished'

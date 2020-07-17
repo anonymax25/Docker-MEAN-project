@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "cypress": "concurrently \"ng serve\" \"cypress open\""
+    "cypress": "concurrently \"ng serve\" \"cypress open\"",
+    "cypress-silent": "cypress run ./cypress/integration/front/login-test.spec.js && cypress run ./cypress/integration/front/todo-list-test.spec.js"
   },
   "private": true,
   "dependencies": {

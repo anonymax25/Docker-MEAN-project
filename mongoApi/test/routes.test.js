@@ -7,7 +7,53 @@ let faker = require('faker');
 chai.use(chaiHttp);
 let sampleTask = [];
 
+
+
 describe('routes testing', () => {
+
+    let user = {
+        _id: '',
+        login: 'testing',
+        password: 'testing'
+    }
+
+    describe('Auth routes', () => {
+        it('404 wait ', (done) => {
+            chai.request(server)
+                .post('/signup')
+                .send()
+                .end((err, res) => {
+                    res.should.have.status(404);
+                    res.body.should.be.a('object');
+
+                    done();
+                });
+        });
+        it('should sign up user', (done) => {
+            chai.request(server)
+                .post('/signup')
+                .send({
+                    login: user.login,
+                    password: user.password
+                })
+                .end((err, res) => {
+                    res.should.have.status(201);
+                    res.body.should.be.a('object');
+                    done();
+                });
+        });
+
+        it('should login user', (done) => {
+            chai.request(server)
+                .get('/login/'+ user.login + '/' + user.password)
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    user._id = res.body._id;
+                    done();
+                });
+        });
+    });
     /*
      * Test the /POST route
     */
@@ -16,8 +62,9 @@ describe('routes testing', () => {
             chai.request(server)
                 .post('/task')
                 .send({
-                    name: faker.name.jobTitle(),
-                    days: faker.random.number(1, 27)
+                    name: 'Tasking',
+                    days: 3,
+                    user: user._id
                 })
                 .end((err, res) => {
                     res.should.have.status(201);
@@ -30,7 +77,8 @@ describe('routes testing', () => {
                 .post('/task')
                 .send({
                     name: faker.name.jobTitle(),
-                    days: faker.name.jobTitle()
+                    days: faker.name.jobTitle(),
+                    user: user._id
                 })
                 .end((err, res) => {
                     res.should.have.status(500);
@@ -46,7 +94,6 @@ describe('routes testing', () => {
             chai.request(server)
                 .get('/')
                 .end((err, res) => {
-                    console.log(res);
                     res.should.have.status(200);
                     res.body.should.be.a('object');
                     done();
@@ -54,7 +101,7 @@ describe('routes testing', () => {
         });
         it('should get all tasks', (done) => {
             chai.request(server)
-                .get('/task')
+                .get('/task/' + user._id)
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('array');
@@ -76,6 +123,21 @@ describe('routes testing', () => {
                    done();
                });
        });
+    });
+
+    /**
+     * @description Delete user and his tasks
+     */
+    describe('End tests',()=> {
+        it('should delete user and its tasks', (done) => {
+            chai.request(server)
+                .delete('/user/' + user.login + '/' + user.password)
+                .end((err, res) => {
+                    res.should.have.status(204);
+                    res.body.should.be.a('object');
+                    done();
+                });
+        });
     });
 });
 

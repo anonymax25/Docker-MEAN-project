@@ -1,31 +1,3 @@
-<div class="container">
-  <div class="jumbotron m-3 p-3 text-center bg-dark">
-    <h1 *ngIf="tasks.length > 1" class="text-light">It's time to work!<br><br><span class="label label-info text-danger">You have {{ tasks.length }} tasks</span></h1>
-    <h1 *ngIf="tasks.length == 1" class="text-light"><span class="label label-info">You have <div class="text-danger">{{ tasks.length }}</div> task</span></h1>
-    <h1 *ngIf="tasks.length <= 0" class="text-light">You don't have any tasks</h1>
-  </div>
 
-  <div class="text-center bg-secondary mb-3">
-    <h1>Add a task to your list</h1>
-        <form  [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm.value)" class="bg-secondary row">
-
-          <input class="ml-2 form-control col-5" id="name" type="text" formControlName="name" placeholder="task name">
-          <input class="ml-2 form-control col-5" id="days" type="number" formControlName="days" placeholder="task duration(days)">
-          <button class="ml-2 btn btn-dark" type="submit">Add task</button>
-
-        </form>
-  </div>
-
-  <div class="d-flex flex-column align-center col-12">
-
-      <div class="row" *ngFor="let task of tasks">
-        <label class=" p-3 bg-dark text-light rounded-pill ">
-          <div> {{ task.name }} , {{task.days}} days <button (click)="deleteTask(task)" class="btn btn-success rounded-pill">Finish</button></div>
-        </label>
-      </div>
-
-  </div>
-
-
-
-</div>
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>

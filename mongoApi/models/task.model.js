@@ -3,7 +3,11 @@ const Schema = mongoose.Schema;
 
 const TaskSchema = new Schema({
     name: String,
-    days: Number
+    days: Number,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 });
 
 module.exports = mongoose.model('task', TaskSchema);

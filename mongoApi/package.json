@@ -4,7 +4,7 @@
   "description": "node.js express api, connected to mongodb",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node app.js &",
     "test": "mocha --exit ./test/routes.test.js",
     "start-dev": "nodemon app.js"
   },

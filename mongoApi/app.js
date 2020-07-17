@@ -9,7 +9,7 @@ const app = Express();
 
 async function startServer() {
     try {
-        await Mongoose.connect(process.env.MONGODB_URI, {
+        await Mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017', {
             useNewUrlParser: true,
             useCreateIndex: true,
             useUnifiedTopology: true,

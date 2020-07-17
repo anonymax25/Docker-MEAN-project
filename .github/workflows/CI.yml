@@ -39,5 +39,9 @@ jobs:
     - name: Run Cypress Front
       working-directory: angularClient
       run: |
+        echo 'npm install'
         npm install
+        echo 'npm install finished'
+        echo 'npm cypress-silent'
         npm cypress-silent
+        echo 'npm cypress-silent finished'

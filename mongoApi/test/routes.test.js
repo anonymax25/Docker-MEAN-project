@@ -18,12 +18,12 @@ describe('routes testing', () => {
     }
 
     describe('Auth routes', () => {
-        it('404 wait ', (done) => {
+        it('should not sign up user ', (done) => {
             chai.request(server)
                 .post('/signup')
                 .send()
                 .end((err, res) => {
-                    res.should.have.status(404);
+                    res.should.have.status(400);
                     res.body.should.be.a('object');
 
                     done();

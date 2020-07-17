@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import { Task } from './task';
+import { Task } from '../task';
 import {Observable, of} from 'rxjs';
-import {environment} from '../environments/environment';
+import {environment} from '../../environments/environment';
 import {catchError, tap} from 'rxjs/operators';
+import {AuthService} from "./auth.service";
 
 const localUrl = 'assets/data/tasks.json';
 
@@ -18,10 +19,11 @@ const optionRequete = {
 })
 export class ApiCallService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private authService: AuthService) { }
 
   getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(environment.apiUrl + '/task', optionRequete).pipe(
+    return this.http.get<Task[]>(environment.apiUrl + '/task/' + this.authService.user._id, optionRequete).pipe(
       catchError(this.handleError<Task[]>('getTasks', [])));
   }
 
@@ -31,6 +33,7 @@ export class ApiCallService {
   }
 
   sendTask(task: Task): Observable<any> {
+    task.user = this.authService.user._id;
     return this.http.post<any>(environment.apiUrl + '/task', task, optionRequete).pipe(
       catchError(this.handleError<any>('sendTask', [])));
   }

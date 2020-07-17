@@ -7,10 +7,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TodolistComponent } from './components/todolist/todolist.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { TodolistDetailComponent } from './components/todolist-detail/todolist-detail.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodolistComponent,
+    LoginComponent,
+    SignupComponent,
+    TodolistDetailComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

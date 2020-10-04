@@ -33,7 +33,7 @@ jobs:
       working-directory: mongoApi
       run: |
         npm install
-        npm start-test
+        npm run start:test
         npm test
       
     - name: Wait a bit for server spool-up

@@ -12,8 +12,6 @@ services:
 
   angular_client:
     build: ./angularClient
-    depends_on:
-      - "api"
     ports:
       - "4200:4200" 
     networks:

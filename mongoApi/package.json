@@ -1,5 +1,5 @@
 {
-  "name": "mongoApi",
+  "name": "mongo-api",
   "version": "1.0.0",
   "description": "node.js express api, connected to mongodb",
   "main": "app.js",

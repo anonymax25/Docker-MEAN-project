@@ -5,7 +5,7 @@ This project was made to test development tools such as Docker/Docker-compose an
 ## Installation
 
 ```bash
-npm installj
+npm i
 ```
 
 ## Run the Docker Compose
